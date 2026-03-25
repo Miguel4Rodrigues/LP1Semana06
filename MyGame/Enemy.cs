@@ -1,3 +1,5 @@
+using System;
+
 namespace MyGame
 {
     public class Enemy
@@ -9,14 +11,38 @@ namespace MyGame
 
         public Enemy (string name)
         {
-            this.name = name;
+            SetName(name);
             health = 100;
             shield = 0;
+        }
+
+        public void SetName(string name)
+        {
+            if (name.Length > 8)
+            {
+                this.name = name.Substring(0, 8);
+            }
+            
+            else
+            {
+                this.name = name;
+            }
+            
         }
 
         public string GetName()
         {
             return name;
+        }
+
+        public float GetHealth()
+        {
+            return health;
+        }
+
+        public float GetShield()
+        {
+            return shield;
         }
 
         public void TakeDamage (float damage)
