@@ -34,9 +34,21 @@ namespace RandomDungeon
 
         // Método Para Mostrar Todos os Inimigos Atuais
         // Exemplo: "Arena: Troll, Skeleton, Ogre"
+        public string AllEnemies()
+        {
+            string result = "Arena: ";
+
+            for (int i = 0; i < enemies.Count; i++)
+            {
+                if (i > 0) result += ", ";
+                result += enemies[i].GetName();
+            }
+
+            return result;
+        }
         public void ShowEnemies()
         {
-            // CÓDIGO AQUI
+            Console.WriteLine(AllEnemies());
         }
         
         // Simula uma Batalha Entre Dois Inimigos
@@ -48,6 +60,17 @@ namespace RandomDungeon
             
             // Se a Vida do Defensor Chegar a 0, Remove-o da Arena
             // CÓDIGO AQUI
-        }
+            int newHealth = defender.GetHealth() - attacker.GetAttack();
+
+            if (newHealth < 0)
+                newHealth = 0;
+
+            defender.SetHealth(newHealth);
+
+            if (defender.GetHealth() == 0)
+            {
+                RemoveEnemy(defender);
+            }
+        }    
     }
 }
