@@ -64,5 +64,16 @@ namespace RandomDungeon
             string enemy = $"{name} ({health}, {attack})";
             return enemy;
         }
+
+        public static Enemy GenerateRandomEnemy(int seed)
+        {
+            Random random = new Random(seed);
+
+            string name = DefaultNames[random.Next(DefaultNames.Length)];
+            int health = random.Next(50, 101); // 50 a 100
+            int attack = random.Next(5, 21);   // 5 a 20
+
+            return new Enemy(name, health, attack);
+        }
     }
 }
